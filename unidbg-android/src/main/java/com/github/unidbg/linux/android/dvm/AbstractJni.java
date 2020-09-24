@@ -343,7 +343,7 @@ public abstract class AbstractJni implements Jni {
         }
 
         switch (signature) {
-            case "com/android/internal/os/BinderInternal->getContextObject()Landroid/os/IBinder;":
+            case "com/starwit/linux/android/internal/os/BinderInternal->getContextObject()Landroid/os/IBinder;":
                 return new Binder(vm, signature);
             case "android/app/ActivityThread->currentActivityThread()Landroid/app/ActivityThread;":
                 return dvmClass.newObject(null);
@@ -353,7 +353,7 @@ public abstract class AbstractJni implements Jni {
                 return dvmClass.newObject(Locale.getDefault());
             case "android/os/ServiceManagerNative->asInterface(Landroid/os/IBinder;)Landroid/os/IServiceManager;":
                 return new ServiceManager(vm, signature);
-            case "com/android/internal/telephony/ITelephony$Stub->asInterface(Landroid/os/IBinder;)Lcom/android/internal/telephony/ITelephony;":
+            case "com/starwit/linux/android/internal/telephony/ITelephony$Stub->asInterface(Landroid/os/IBinder;)Lcom/android/internal/telephony/ITelephony;":
                 return vaList.getObject(0);
             case "java/security/cert/CertificateFactory->getInstance(Ljava/lang/String;)Ljava/security/cert/CertificateFactory;": {
                 StringObject type = vaList.getObject(0);

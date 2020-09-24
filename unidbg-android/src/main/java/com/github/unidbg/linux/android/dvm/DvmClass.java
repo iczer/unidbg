@@ -277,4 +277,22 @@ public class DvmClass extends DvmObject<String> {
         return jni;
     }
 
+    /**
+     * 给 Dvm 对象添加方法
+     * @param name 方法名
+     * @param args 参数定义
+     */
+    public void addMethodMap(String name, String args) {
+        staticMethodMap.put(name.hashCode(), new DvmMethod(this, name, args, false));
+    }
+
+    /**
+     * 给 Dvm 对象添加静态方法
+     * @param name 方法名
+     * @param args 参数定义
+     */
+    public void addStaticMethodMap(String name, String args) {
+        staticMethodMap.put(name.hashCode(), new DvmMethod(this, name, args, true));
+    }
+
 }
