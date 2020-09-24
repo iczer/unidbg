@@ -29,7 +29,7 @@ public class DouyinEmulator {
     private static final Log log = LogFactory.getLog(DouyinEmulator.class);
 
     public final String APP_PACKAGE_NAME = "com.ss.android.ugc.aweme";
-    private final String libraryPath;
+    private final File library;
     private final int sdk;
     private final AndroidARMEmulator emulator;
     private VM vm;
@@ -37,11 +37,14 @@ public class DouyinEmulator {
     private DvmClass jniObject;
 
 
-    public DouyinEmulator(String libraryPath, int sdk) {
-        this.libraryPath = libraryPath;
+    public DouyinEmulator(File library, int sdk) {
+        this.library = library;
         this.sdk = sdk;
         emulator = new AndroidARMEmulator(APP_PACKAGE_NAME);
+    }
 
+    public void setVerbose(boolean verbose) {
+        vm.setVerbose(verbose);
     }
 
     public void start() {
@@ -49,8 +52,8 @@ public class DouyinEmulator {
         memory.setLibraryResolver(new AndroidResolver(sdk));
         vm = emulator.createDalvikVM(null);
         vm.setJni(new BytedanceJni());
-        vm.setVerbose(true);
-        DalvikModule dm = vm.loadLibrary(new File(this.libraryPath), false);
+        vm.setVerbose(false);
+        DalvikModule dm = vm.loadLibrary(library, false);
         dm.callJNI_OnLoad(emulator);
         this.module = dm.getModule();
         jniObject = vm.resolveClass("com/ss/sys/ces/a");

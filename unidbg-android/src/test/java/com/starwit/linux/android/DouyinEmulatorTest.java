@@ -1,5 +1,6 @@
 package com.starwit.linux.android;
 
+import java.io.File;
 import java.io.IOException;
 
 public class DouyinEmulatorTest {
@@ -7,7 +8,7 @@ public class DouyinEmulatorTest {
     static String libraryPath = "unidbg-android/src/test/resources/example_binaries/armeabi-v7a/libcms.so";
 
     public static void main(String[] args) throws IOException {
-        DouyinEmulator emulator = new DouyinEmulator(libraryPath,23);
+        DouyinEmulator emulator = new DouyinEmulator(new File(libraryPath),23);
         emulator.start();
         for (int i = 0; i < 300; i++) {
             long timestamp = System.currentTimeMillis();
