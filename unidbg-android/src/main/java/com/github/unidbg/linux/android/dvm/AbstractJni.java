@@ -373,6 +373,11 @@ public abstract class AbstractJni implements Jni {
                     throw new IllegalStateException(e);
                 }
             }
+            case "android/net/Uri->parse(Ljava/lang/String;)Landroid/net/Uri;": {
+                log.debug("--fixme");
+                String uri = (String) vaList.getObject(0).getValue();
+                return new Uri(vm, uri);
+            }
         }
 
         throw new UnsupportedOperationException(signature);
